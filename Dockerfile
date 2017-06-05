@@ -17,11 +17,11 @@ RUN echo \
 
 COPY . /var/www/html
 
+VOLUME /var/www/html/data
+
 RUN rm -rf /var/www/html/index.html /var/www/html/data/* && \
     mkdir /var/www/html/data/favicons && \
     chown -R www-data:www-data /var/www/html/data
-
-VOLUME /var/www/html/data
 
 EXPOSE 80
 
