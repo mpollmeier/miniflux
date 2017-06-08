@@ -25,18 +25,19 @@
         </span>
         <span class="item-title">
         <?php echo Miniflux\Helper\favicon($favicons, $item['feed_id']) ?>
+        <?php if ($display_mode === 'titles_abridged') $title = Miniflux\Helper\str_limit($item['title'], 250); else $title = $item['title']; ?>
         <?php if ($display_mode === 'full' || $item_title_link == 'original'): ?>
             <a class="original" rel="noreferrer" target="_blank"
                href="<?php echo $item['url'] ?>"
                <?php echo ($original_marks_read) ? 'data-action="mark-read"' : '' ?>
-               title="<?php echo Miniflux\Helper\escape($item['title']) ?>"
-            ><?php echo Miniflux\Helper\escape($item['title']) ?></a>
+               title="<?php echo Miniflux\Helper\escape($title) ?>"
+            ><?php echo Miniflux\Helper\escape($title) ?></a>
         <?php else: ?>
             <a
                 href="?action=show&amp;menu=<?php echo $menu ?><?php echo isset($group_id) ? '&amp;group_id='.$group_id : '' ?>&amp;id=<?php echo $item['id'] ?>"
                 class="show"
-                title="<?php echo Miniflux\Helper\escape($item['title']) ?>"
-            ><?php echo Miniflux\Helper\escape($item['title']) ?></a>
+                title="<?php echo Miniflux\Helper\escape($title) ?>"
+            ><?php echo Miniflux\Helper\escape($title) ?></a>
         <?php endif ?>
         </span>
     </h2>

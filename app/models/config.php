@@ -88,9 +88,10 @@ function get_sorting_directions()
 function get_display_mode()
 {
     return array(
-        'titles'    => t('Titles'),
-        'summaries' => t('Summaries'),
-        'full'      => t('Full contents'),
+        'titles'          => t('Titles'),
+        'titles_abridged' => t('Titles (abridged)'),
+        'summaries'       => t('Summaries'),
+        'full'            => t('Full contents'),
     );
 }
 
