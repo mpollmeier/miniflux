@@ -10,6 +10,17 @@ function escape($value)
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
 }
 
+function str_limit($value, $limit = 100)
+{
+    $valuelen = mb_strlen($value);
+    if ($limit >= $valuelen) return $value;
+    else {
+      $until = mb_strrpos($value, ' ', $limit - $valuelen);
+      $remainder = mb_substr($value, $until);
+      return mb_substr($value, 0, $until) . '...(+' . str_word_count($remainder) . 'w)';
+    }
+}
+
 function generate_token()
 {
     if (function_exists('random_bytes')) {

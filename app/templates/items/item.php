@@ -32,11 +32,12 @@
                title="<?php echo Miniflux\Helper\escape($item['title']) ?>"
             ><?php echo Miniflux\Helper\escape($item['title']) ?></a>
         <?php else: ?>
+            <?php if ($display_mode === 'titles_abridged') $title = Miniflux\Helper\str_limit($item['title'], 150); else $title = $item['title']; ?>
             <a
                 href="?action=show&amp;menu=<?php echo $menu ?><?php echo isset($group_id) ? '&amp;group_id='.$group_id : '' ?>&amp;id=<?php echo $item['id'] ?>"
                 class="show"
-                title="<?php echo Miniflux\Helper\escape($item['title']) ?>"
-            ><?php echo Miniflux\Helper\escape($item['title']) ?></a>
+                title="<?php echo Miniflux\Helper\escape($title) ?>"
+            ><?php echo Miniflux\Helper\escape($title) ?></a>
         <?php endif ?>
         </span>
     </h2>
