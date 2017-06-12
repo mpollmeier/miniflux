@@ -3,8 +3,12 @@ FROM ubuntu:16.04
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     apache2 libapache2-mod-php7.0 php7.0-pgsql php7.0-sqlite3 php7.0-xml php7.0-mcrypt \
-    php7.0-opcache php7.0-mcrypt php7.0-mbstring php7.0-json php7.0-curl && \
+    php7.0-opcache php7.0-mcrypt php7.0-mbstring php7.0-json php7.0-curl \
+    cron && \
     apt-get clean
+
+# from https://github.com/miniflux/miniflux/issues/734
+RUN echo "* */3 * * * su - www-data -s /bin/bash -c \"php -f /var/www/html/cronjob.php > /dev/null\""| crontab -
 
 RUN echo \
     "ServerName localhost\n" \
@@ -25,4 +29,4 @@ VOLUME /var/www/html/data
 
 EXPOSE 80
 
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+CMD ["sh", "-c", "service cron start; /usr/sbin/apache2ctl -D FOREGROUND"]
