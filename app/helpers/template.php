@@ -132,3 +132,16 @@ function button($type, $label, $action, array $params = array())
     $params['action'] = $action;
     return sprintf('<a href="?%s" class="btn btn-%s">%s</a>', http_build_query($params, '', '&amp;'), $type, escape($label));
 }
+
+function str_limit($value, $limit = 100)
+{
+    $valuelen = mb_strlen($value);
+    if ($limit >= $valuelen) {
+        return $value;
+    }
+    else {
+      $until = mb_strrpos($value, ' ', $limit - $valuelen);
+      $remainder = mb_substr($value, $until);
+      return mb_substr($value, 0, $until) . '...(+' . str_word_count($remainder) . 'w)';
+    }
+}
