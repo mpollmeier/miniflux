@@ -16,7 +16,7 @@ RUN echo \
     "</Directory>\n" >> /etc/apache2/apache2.conf
 
 RUN echo \
-    "# Update all feeds every 3 hours" \
+    "# Update all feeds every 3 hours\n" \
     "0 */3 * * *  cd /var/www/html && php cronjob.php >/dev/null 2>&1" \
     >> /var/spool/cron/crontabs/root
 
