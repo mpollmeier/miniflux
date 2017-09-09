@@ -29,4 +29,5 @@ VOLUME /var/www/html/data
 
 EXPOSE 80
 
-CMD ["sh", "-c", "service cron start; /usr/sbin/apache2ctl -D FOREGROUND"]
+COPY entrypoint.sh /usr/local/bin/
+ENTRYPOINT "entrypoint.sh"
