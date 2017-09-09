@@ -25,6 +25,5 @@ RUN cd /tmp \
 
 ADD docker/ /
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD []
-
+COPY entrypoint.sh /usr/local/bin/
+ENTRYPOINT "entrypoint.sh"
