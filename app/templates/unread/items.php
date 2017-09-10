@@ -13,15 +13,6 @@
         </ul>
     </nav>
     <?php endif ?>
-
-    <ul>
-        <li>
-            <a href="?action=unread<?php echo $group_id === null ? '' : '&amp;group_id='.$group_id ?>&amp;order=updated&amp;direction=<?php echo $direction == 'asc' ? 'desc' : 'asc' ?>"><?php echo tne('sort by date %s(%s)%s', '<span class="hide-mobile">',$direction == 'desc' ? t('older first') : t('most recent first'), '</span>') ?></a>
-        </li>
-        <li>
-            <a href="?action=mark-all-read<?php echo $group_id === null ? '' : '&amp;group_id='.$group_id ?>"><?php echo t('mark all as read') ?></a>
-        </li>
-    </ul>
 </div>
 
 <section class="items" id="listing">

@@ -251,10 +251,13 @@ function get_items_by_status($user_id, $status, $feed_ids = array(), $offset = n
             'feeds.title AS feed_title'
         )
         ->join('feeds', 'id', 'feed_id')
+        ->join('feeds_groups', 'feed_id', 'id', 'feeds')
         ->eq('items.user_id', $user_id)
         ->eq('items.status', $status)
         ->in('items.feed_id', $feed_ids)
-        ->orderBy($order_column, $order_direction)
+        ->orderBy("feeds_groups.group_id")
+        ->orderBy("feeds.id")
+        ->orderBy("updated", $order_direction)
         ->offset($offset)
         ->limit($limit)
         ->findAll();
