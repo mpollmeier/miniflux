@@ -19,10 +19,6 @@ RUN echo \
     "    Allow from all\n" \
     "</Directory>\n" >> /etc/apache2/apache2.conf
 
-RUN a2dissite 000-default
-RUN a2enmod ssl
-RUN a2ensite default-ssl
-
 COPY . /var/www/html
 
 RUN rm -rf /var/www/html/index.html /var/www/html/data/* && \
