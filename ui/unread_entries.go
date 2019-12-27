@@ -40,7 +40,7 @@ func (h *handler) showUnreadPage(w http.ResponseWriter, r *http.Request) {
 
 	builder = h.store.NewEntryQueryBuilder(user.ID)
 	builder.WithStatus(model.EntryStatusUnread)
-	builder.WithOrder(model.DefaultSortingOrder)
+	builder.WithOrder("c.title, f.title")
 	builder.WithDirection(user.EntryDirection)
 	builder.WithOffset(offset)
 	builder.WithLimit(nbItemsPerPage)
